@@ -23,12 +23,20 @@ class DatabaseHelper {
   static const String _tblWatchlist = 'watchlist';
   static const String _tblCache = 'cache';
 
-
   Future<Database> _initDb() async {
     final path = await getDatabasesPath();
     final databasePath = '$path/ditonton.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(
+      databasePath,
+      version: 2,
+      onCreate: _onCreate,
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await db.execute("ALTER TABLE $_tblWatchlist ADD COLUMN type TEXT;");
+        }
+      },
+    );
     return db;
   }
 
@@ -38,7 +46,8 @@ class DatabaseHelper {
         id INTEGER PRIMARY KEY,
         title TEXT,
         overview TEXT,
-        posterPath TEXT
+        posterPath TEXT,
+        type STRING
       );
     ''');
     await db.execute('''
@@ -73,6 +82,7 @@ class DatabaseHelper {
     );
     return results;
   }
+
   Future<int> clearCache(String category) async {
     final db = await database;
     return await db!.delete(
@@ -84,7 +94,7 @@ class DatabaseHelper {
 
   Future<int> insertWatchlist(MovieTable movie) async {
     final db = await database;
-    return await db!.insert(_tblWatchlist, movie.toJson());
+    return await db!.insert(_tblWatchlist, movie.insert());
   }
 
   Future<int> removeWatchlist(MovieTable movie) async {

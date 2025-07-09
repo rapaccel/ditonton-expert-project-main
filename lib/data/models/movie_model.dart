@@ -16,6 +16,7 @@ class MovieModel extends Equatable {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    this.type,
   });
 
   final bool adult;
@@ -31,6 +32,7 @@ class MovieModel extends Equatable {
   final bool video;
   final double voteAverage;
   final int voteCount;
+  final String? type;
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
         adult: json["adult"],
@@ -79,6 +81,7 @@ class MovieModel extends Equatable {
       video: this.video,
       voteAverage: this.voteAverage,
       voteCount: this.voteCount,
+      type: this.type,
     );
   }
 
@@ -97,5 +100,6 @@ class MovieModel extends Equatable {
         video,
         voteAverage,
         voteCount,
+        type,
       ];
 }

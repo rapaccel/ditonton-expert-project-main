@@ -31,13 +31,13 @@
             <td class="headerValue">lcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntryLo">56.4&nbsp;%</td>
+            <td class="headerCovTableEntryLo">65.7&nbsp;%</td>
             <td class="headerCovTableEntry">181</td>
-            <td class="headerCovTableEntry">102</td>
+            <td class="headerCovTableEntry">119</td>
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2025-07-09 21:27:48</td>
+            <td class="headerValue">2025-07-10 01:20:43</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -226,20 +226,20 @@
 <span id="L164"><span class="lineNum">     164</span> <span class="tlaGNC">           1 :                               style: kHeading5,</span></span>
 <span id="L165"><span class="lineNum">     165</span>              :                             ),</span>
 <span id="L166"><span class="lineNum">     166</span> <span class="tlaGNC">           1 :                             FilledButton(</span></span>
-<span id="L167"><span class="lineNum">     167</span> <span class="tlaUNC tlaBgUNC">           0 :                               onPressed: () async {</span></span>
-<span id="L168"><span class="lineNum">     168</span> <span class="tlaUNC">           0 :                                 if (!isAddedWatchlist) {</span></span>
-<span id="L169"><span class="lineNum">     169</span> <span class="tlaUNC">           0 :                                   if (isTvShow) {</span></span>
-<span id="L170"><span class="lineNum">     170</span> <span class="tlaUNC">           0 :                                     await Provider.of&lt;TvDetailNotifier&gt;(context,</span></span>
+<span id="L167"><span class="lineNum">     167</span> <span class="tlaGNC">           1 :                               onPressed: () async {</span></span>
+<span id="L168"><span class="lineNum">     168</span> <span class="tlaGNC">           1 :                                 if (!isAddedWatchlist) {</span></span>
+<span id="L169"><span class="lineNum">     169</span> <span class="tlaGNC">           1 :                                   if (isTvShow) {</span></span>
+<span id="L170"><span class="lineNum">     170</span> <span class="tlaUNC tlaBgUNC">           0 :                                     await Provider.of&lt;TvDetailNotifier&gt;(context,</span></span>
 <span id="L171"><span class="lineNum">     171</span>              :                                             listen: false)</span>
 <span id="L172"><span class="lineNum">     172</span> <span class="tlaUNC">           0 :                                         .addWatchlist(tvShow!);</span></span>
 <span id="L173"><span class="lineNum">     173</span>              :                                   } else {</span>
-<span id="L174"><span class="lineNum">     174</span> <span class="tlaUNC">           0 :                                     await Provider.of&lt;MovieDetailNotifier&gt;(</span></span>
+<span id="L174"><span class="lineNum">     174</span> <span class="tlaGNC tlaBgGNC">           1 :                                     await Provider.of&lt;MovieDetailNotifier&gt;(</span></span>
 <span id="L175"><span class="lineNum">     175</span>              :                                             context,</span>
 <span id="L176"><span class="lineNum">     176</span>              :                                             listen: false)</span>
-<span id="L177"><span class="lineNum">     177</span> <span class="tlaUNC">           0 :                                         .addWatchlist(movie!);</span></span>
+<span id="L177"><span class="lineNum">     177</span> <span class="tlaGNC">           2 :                                         .addWatchlist(movie!);</span></span>
 <span id="L178"><span class="lineNum">     178</span>              :                                   }</span>
 <span id="L179"><span class="lineNum">     179</span>              :                                 } else {</span>
-<span id="L180"><span class="lineNum">     180</span> <span class="tlaUNC">           0 :                                   if (isTvShow) {</span></span>
+<span id="L180"><span class="lineNum">     180</span> <span class="tlaUNC tlaBgUNC">           0 :                                   if (isTvShow) {</span></span>
 <span id="L181"><span class="lineNum">     181</span> <span class="tlaUNC">           0 :                                     await Provider.of&lt;TvDetailNotifier&gt;(context,</span></span>
 <span id="L182"><span class="lineNum">     182</span>              :                                             listen: false)</span>
 <span id="L183"><span class="lineNum">     183</span> <span class="tlaUNC">           0 :                                         .removeFromWatchlist(tvShow!);</span></span>
@@ -251,37 +251,37 @@
 <span id="L189"><span class="lineNum">     189</span>              :                                   }</span>
 <span id="L190"><span class="lineNum">     190</span>              :                                 }</span>
 <span id="L191"><span class="lineNum">     191</span>              : </span>
-<span id="L192"><span class="lineNum">     192</span> <span class="tlaUNC">           0 :                                 final message = isTvShow</span></span>
-<span id="L193"><span class="lineNum">     193</span> <span class="tlaUNC">           0 :                                     ? Provider.of&lt;TvDetailNotifier&gt;(context,</span></span>
+<span id="L192"><span class="lineNum">     192</span> <span class="tlaGNC tlaBgGNC">           1 :                                 final message = isTvShow</span></span>
+<span id="L193"><span class="lineNum">     193</span> <span class="tlaUNC tlaBgUNC">           0 :                                     ? Provider.of&lt;TvDetailNotifier&gt;(context,</span></span>
 <span id="L194"><span class="lineNum">     194</span>              :                                             listen: false)</span>
 <span id="L195"><span class="lineNum">     195</span> <span class="tlaUNC">           0 :                                         .watchlistMessage</span></span>
-<span id="L196"><span class="lineNum">     196</span> <span class="tlaUNC">           0 :                                     : Provider.of&lt;MovieDetailNotifier&gt;(context,</span></span>
+<span id="L196"><span class="lineNum">     196</span> <span class="tlaGNC tlaBgGNC">           1 :                                     : Provider.of&lt;MovieDetailNotifier&gt;(context,</span></span>
 <span id="L197"><span class="lineNum">     197</span>              :                                             listen: false)</span>
-<span id="L198"><span class="lineNum">     198</span> <span class="tlaUNC">           0 :                                         .watchlistMessage;</span></span>
+<span id="L198"><span class="lineNum">     198</span> <span class="tlaGNC">           1 :                                         .watchlistMessage;</span></span>
 <span id="L199"><span class="lineNum">     199</span>              : </span>
-<span id="L200"><span class="lineNum">     200</span> <span class="tlaUNC">           0 :                                 if (message ==</span></span>
+<span id="L200"><span class="lineNum">     200</span> <span class="tlaGNC">           1 :                                 if (message ==</span></span>
 <span id="L201"><span class="lineNum">     201</span>              :                                         MovieDetailNotifier</span>
 <span id="L202"><span class="lineNum">     202</span>              :                                             .watchlistAddSuccessMessage ||</span>
-<span id="L203"><span class="lineNum">     203</span> <span class="tlaUNC">           0 :                                     message ==</span></span>
+<span id="L203"><span class="lineNum">     203</span> <span class="tlaGNC">           1 :                                     message ==</span></span>
 <span id="L204"><span class="lineNum">     204</span>              :                                         MovieDetailNotifier</span>
 <span id="L205"><span class="lineNum">     205</span>              :                                             .watchlistRemoveSuccessMessage ||</span>
-<span id="L206"><span class="lineNum">     206</span> <span class="tlaUNC">           0 :                                     message ==</span></span>
+<span id="L206"><span class="lineNum">     206</span> <span class="tlaGNC">           1 :                                     message ==</span></span>
 <span id="L207"><span class="lineNum">     207</span>              :                                         TvDetailNotifier</span>
 <span id="L208"><span class="lineNum">     208</span>              :                                             .watchlistAddSuccessMessage ||</span>
-<span id="L209"><span class="lineNum">     209</span> <span class="tlaUNC">           0 :                                     message ==</span></span>
+<span id="L209"><span class="lineNum">     209</span> <span class="tlaGNC">           1 :                                     message ==</span></span>
 <span id="L210"><span class="lineNum">     210</span>              :                                         TvDetailNotifier</span>
 <span id="L211"><span class="lineNum">     211</span>              :                                             .watchlistRemoveSuccessMessage) {</span>
-<span id="L212"><span class="lineNum">     212</span> <span class="tlaUNC">           0 :                                   ScaffoldMessenger.of(context).showSnackBar(</span></span>
-<span id="L213"><span class="lineNum">     213</span> <span class="tlaUNC">           0 :                                       SnackBar(content: Text(message)));</span></span>
+<span id="L212"><span class="lineNum">     212</span> <span class="tlaGNC">           2 :                                   ScaffoldMessenger.of(context).showSnackBar(</span></span>
+<span id="L213"><span class="lineNum">     213</span> <span class="tlaGNC">           2 :                                       SnackBar(content: Text(message)));</span></span>
 <span id="L214"><span class="lineNum">     214</span>              :                                 } else {</span>
-<span id="L215"><span class="lineNum">     215</span> <span class="tlaUNC">           0 :                                   showDialog(</span></span>
+<span id="L215"><span class="lineNum">     215</span> <span class="tlaGNC">           1 :                                   showDialog(</span></span>
 <span id="L216"><span class="lineNum">     216</span>              :                                     context: context,</span>
-<span id="L217"><span class="lineNum">     217</span> <span class="tlaUNC">           0 :                                     builder: (context) =&gt;</span></span>
-<span id="L218"><span class="lineNum">     218</span> <span class="tlaUNC">           0 :                                         AlertDialog(content: Text(message)),</span></span>
+<span id="L217"><span class="lineNum">     217</span> <span class="tlaGNC">           1 :                                     builder: (context) =&gt;</span></span>
+<span id="L218"><span class="lineNum">     218</span> <span class="tlaGNC">           2 :                                         AlertDialog(content: Text(message)),</span></span>
 <span id="L219"><span class="lineNum">     219</span>              :                                   );</span>
 <span id="L220"><span class="lineNum">     220</span>              :                                 }</span>
 <span id="L221"><span class="lineNum">     221</span>              :                               },</span>
-<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC tlaBgGNC">           1 :                               child: Row(</span></span>
+<span id="L222"><span class="lineNum">     222</span> <span class="tlaGNC">           1 :                               child: Row(</span></span>
 <span id="L223"><span class="lineNum">     223</span>              :                                 mainAxisSize: MainAxisSize.min,</span>
 <span id="L224"><span class="lineNum">     224</span> <span class="tlaGNC">           1 :                                 children: [</span></span>
 <span id="L225"><span class="lineNum">     225</span> <span class="tlaGNC">           1 :                                   isAddedWatchlist</span></span>

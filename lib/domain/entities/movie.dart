@@ -1,3 +1,4 @@
+import 'package:ditonton/tv_show/domain/entities/tv_show.dart';
 import 'package:equatable/equatable.dart';
 
 class Movie extends Equatable {
@@ -15,6 +16,7 @@ class Movie extends Equatable {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    this.type,
   });
 
   Movie.watchlist({
@@ -22,7 +24,28 @@ class Movie extends Equatable {
     required this.overview,
     required this.posterPath,
     required this.title,
+    this.type,
   });
+
+  Movie toMovie() {
+    return Movie.watchlist(
+      id: id,
+      title: title,
+      overview: overview,
+      posterPath: posterPath,
+      type: type,
+    );
+  }
+
+  TvShow toTvShow() {
+    return TvShow.watchlist(
+      id: id,
+      name: title!,
+      overview: overview!,
+      posterPath: posterPath,
+      type: type,
+    );
+  }
 
   bool? adult;
   String? backdropPath;
@@ -37,6 +60,7 @@ class Movie extends Equatable {
   bool? video;
   double? voteAverage;
   int? voteCount;
+  String? type;
 
   @override
   List<Object?> get props => [

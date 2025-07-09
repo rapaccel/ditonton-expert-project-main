@@ -32,8 +32,12 @@ void main() {
         () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
-          .thenAnswer((_) async =>
-              http.Response(readJson('dummy_data/now_playing.json'), 200));
+          .thenAnswer((_) async => http.Response.bytes(
+                utf8.encode(readJson('dummy_data/on_air_tv.json')),
+                200,
+                headers: {'content-type': 'application/json; charset=utf-8'},
+              ));
+
       // act
       final result = await dataSource.getOnTheAirTvShows();
       // assert
@@ -62,8 +66,9 @@ void main() {
         () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY')))
-          .thenAnswer((_) async =>
-              http.Response(readJson('dummy_data/popular_tv.json'), 200));
+          .thenAnswer((_) async => http.Response(
+              readJson('dummy_data/popular_tv.json'), 200,
+              headers: {'content-type': 'application/json; charset=utf-8'}));
       // act
       final result = await dataSource.getPopularTvShows();
       // assert
@@ -119,8 +124,9 @@ void main() {
     test('should return tv detail when the response code is 200', () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/$tId?$API_KEY')))
-          .thenAnswer((_) async =>
-              http.Response(readJson('dummy_data/detail_tv.json'), 200));
+          .thenAnswer((_) async => http.Response(
+              readJson('dummy_data/detail_tv.json'), 200,
+              headers: {'content-type': 'application/json; charset=utf-8'}));
       // act
       final result = await dataSource.getTvShowDetail(tId);
       // assert
@@ -151,7 +157,8 @@ void main() {
       when(mockHttpClient
               .get(Uri.parse('$BASE_URL/tv/$tId/recommendations?$API_KEY')))
           .thenAnswer((_) async => http.Response(
-              readJson('dummy_data/tv_recommendation.json'), 200));
+              readJson('dummy_data/tv_recommendation.json'), 200,
+              headers: {'content-type': 'application/json; charset=utf-8'}));
       // act
       final result = await dataSource.getTvShowRecommendations(tId);
       // assert
@@ -180,9 +187,10 @@ void main() {
     test('should return list of tv when response code is 200', () async {
       // arrange
       when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/search/movie?$API_KEY&query=$tQuery')))
+              .get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$tQuery')))
           .thenAnswer((_) async => http.Response(
-              readJson('dummy_data/search_breaking_bad.json'), 200));
+              readJson('dummy_data/search_breaking_bad.json'), 200,
+              headers: {'content-type': 'application/json; charset=utf-8'}));
       // act
       final result = await dataSource.searchTvShows(tQuery);
       // assert

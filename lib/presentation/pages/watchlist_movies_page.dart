@@ -48,12 +48,36 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                 child: CircularProgressIndicator(),
               );
             } else if (data.watchlistState == RequestState.Loaded) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  final movie = data.watchlistMovies[index];
-                  return MovieCard(movie, false, null);
-                },
-                itemCount: data.watchlistMovies.length,
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Movies',
+                        style: Theme.of(context).textTheme.bodyLarge),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: data.watchlistMovies.length,
+                      itemBuilder: (context, index) {
+                        final movie = data.watchlistMovies[index];
+                        return MovieCard(movie, false, null);
+                      },
+                    ),
+                    SizedBox(height: 16),
+                    Text('TV Shows',
+                        style: Theme.of(context).textTheme.bodyLarge),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: data.watchlistTvShows.length,
+                      itemBuilder: (context, index) {
+                        final tvShow = data.watchlistTvShows[index];
+                        print('TV Show: ${tvShow.name}, ID: ${tvShow.id}');
+                        return MovieCard(null, true, tvShow);
+                      },
+                    ),
+                  ],
+                ),
               );
             } else {
               return Center(

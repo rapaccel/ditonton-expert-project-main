@@ -15,6 +15,7 @@ class TvShow extends Equatable {
     required this.overview,
     required this.posterPath,
     required this.name,
+    this.type,
   });
 
   int id;
@@ -24,6 +25,7 @@ class TvShow extends Equatable {
   double? voteAverage;
   int? voteCount;
   int? runtime;
+  String? type;
 
   @override
   List<Object?> get props =>

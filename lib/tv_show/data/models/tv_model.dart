@@ -1,6 +1,7 @@
 import 'package:ditonton/tv_show/domain/entities/tv_show.dart';
+import 'package:equatable/equatable.dart';
 
-class TvModel {
+class TvModel extends Equatable {
   final bool adult;
   final String backdropPath;
   final List<int> genreIds;

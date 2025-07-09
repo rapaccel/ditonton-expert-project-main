@@ -787,10 +787,10 @@ class MockTvRepositories extends _i1.Mock implements _i21.TvRepositories {
       ) as _i7.Future<bool>);
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, List<_i22.TvShow>>> getWatchlistMovies() =>
+  _i7.Future<_i2.Either<_i8.Failure, List<_i22.TvShow>>> getWatchlistTv() =>
       (super.noSuchMethod(
         Invocation.method(
-          #getWatchlistMovies,
+          #getWatchlistTv,
           [],
         ),
         returnValue:
@@ -798,7 +798,7 @@ class MockTvRepositories extends _i1.Mock implements _i21.TvRepositories {
                 _FakeEither_0<_i8.Failure, List<_i22.TvShow>>(
           this,
           Invocation.method(
-            #getWatchlistMovies,
+            #getWatchlistTv,
             [],
           ),
         )),
