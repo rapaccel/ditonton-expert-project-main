@@ -1,0 +1,455 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/bKxiLRPVWe2nZXCzt6JPr5HNWYm.jpg",
+      "id": 110316,
+      "name": "Alice in Borderland",
+      "original_name": "今際の国のアリス",
+      "overview": "With his two friends, a video-game-obsessed young man finds himself in a strange version of Tokyo where they must compete in dangerous games to win.",
+      "poster_path": "/Ac8ruycRXzgcsndTZFK6ouGA0FA.jpg",
+      "media_type": "tv",
+      "original_language": "ja",
+      "genre_ids": [
+        9648,
+        18,
+        10759
+      ],
+      "popularity": 89.0017,
+      "first_air_date": "2020-12-10",
+      "vote_average": 8.162,
+      "vote_count": 2258,
+      "origin_country": [
+        "JP"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lyZmMTwpr6ZCXKA7lszpXcDwNOM.jpg",
+      "id": 90462,
+      "name": "Chucky",
+      "original_name": "Chucky",
+      "overview": "After a vintage Chucky doll turns up at a suburban yard sale, an idyllic American town is thrown into chaos as a series of horrifying murders begin to expose the town’s hypocrisies and secrets. Meanwhile, the arrival of enemies — and allies — from Chucky’s past threatens to expose the truth behind the killings, as well as the demon doll’s untold origins.",
+      "poster_path": "/sdCJbGkvnIsIKLxaFQrviriODVq.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        80,
+        35,
+        9648
+      ],
+      "popularity": 43.9052,
+      "first_air_date": "2021-10-12",
+      "vote_average": 7.837,
+      "vote_count": 4100,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/yYpQV25I7XB6S0POJOScPjxYWV5.jpg",
+      "id": 60572,
+      "name": "Pokémon",
+      "original_name": "ポケットモンスター",
+      "overview": "Join Ash accompanied by his partner Pikachu, as he travels through many regions, meets new friends and faces new challenges on his quest to become a Pokémon Master.",
+      "poster_path": "/rOuGm07PxBhEsK9TaGPRQVJQm1X.jpg",
+      "media_type": "tv",
+      "original_language": "ja",
+      "genre_ids": [
+        16,
+        10759,
+        10765
+      ],
+      "popularity": 303.6185,
+      "first_air_date": "1997-04-01",
+      "vote_average": 7.927,
+      "vote_count": 1984,
+      "origin_country": [
+        "JP"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1R68vl3d5s86JsS2NPjl8UoMqIS.jpg",
+      "id": 88329,
+      "name": "Hawkeye",
+      "original_name": "Hawkeye",
+      "overview": "Former Avenger Clint Barton has a seemingly simple mission: get back to his family for Christmas. Possible? Maybe with the help of Kate Bishop, a 22-year-old archer with dreams of becoming a superhero. The two are forced to work together when a presence from Barton’s past threatens to derail far more than the festive spirit.",
+      "poster_path": "/ct5pNE5dDHryHLDnxyZPYcqO1sz.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        18,
+        35,
+        10759
+      ],
+      "popularity": 37.5912,
+      "first_air_date": "2021-11-24",
+      "vote_average": 7.835,
+      "vote_count": 3492,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/u23G9KZregWHs1use6ir1fX27gl.jpg",
+      "id": 81356,
+      "name": "Sex Education",
+      "original_name": "Sex Education",
+      "overview": "Inexperienced Otis channels his sex therapist mom when he teams up with rebellious Maeve to set up an underground sex therapy clinic at school.",
+      "poster_path": "/bc3bmTdnoKcRuO9xdQKgAbB7Y9Z.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "popularity": 89.5547,
+      "first_air_date": "2019-01-11",
+      "vote_average": 8.235,
+      "vote_count": 7520,
+      "origin_country": [
+        "GB"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wQEW3xLrQAThu1GvqpsKQyejrYS.jpg",
+      "id": 94605,
+      "name": "Arcane",
+      "original_name": "Arcane",
+      "overview": "Amid the stark discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and clashing convictions.",
+      "poster_path": "/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        16,
+        10765,
+        18,
+        10759
+      ],
+      "popularity": 69.3859,
+      "first_air_date": "2021-11-06",
+      "vote_average": 8.8,
+      "vote_count": 5218,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/q74hFjNMjlA4Fj8mYA42X9lOvLV.jpg",
+      "id": 99966,
+      "name": "All of Us Are Dead",
+      "original_name": "지금 우리 학교는",
+      "overview": "A high school becomes ground zero for a zombie virus outbreak. Trapped students must fight their way out — or turn into one of the rabid infected.",
+      "poster_path": "/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg",
+      "media_type": "tv",
+      "original_language": "ko",
+      "genre_ids": [
+        10759,
+        18,
+        10765
+      ],
+      "popularity": 63.1606,
+      "first_air_date": "2022-01-28",
+      "vote_average": 8.285,
+      "vote_count": 4086,
+      "origin_country": [
+        "KR"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg",
+      "id": 71446,
+      "name": "Money Heist",
+      "original_name": "La casa de papel",
+      "overview": "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing.",
+      "poster_path": "/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
+      "media_type": "tv",
+      "original_language": "es",
+      "genre_ids": [
+        80,
+        18
+      ],
+      "popularity": 65.4075,
+      "first_air_date": "2017-05-02",
+      "vote_average": 8.237,
+      "vote_count": 18960,
+      "origin_country": [
+        "ES"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/h0CQ36rm9cSLznve5ocCDtYlnwN.jpg",
+      "id": 195670,
+      "name": "XO, Kitty",
+      "original_name": "XO, Kitty",
+      "overview": "Teen matchmaker Kitty Song Covey thinks she knows everything there is to know about love. But when she moves halfway across the world to reunite with her long-distance boyfriend, she'll soon realize that relationships are a lot more complicated when it's your own heart on the line.",
+      "poster_path": "/hxvTdKAwv27PUfpXOQp6AwWr6V.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "popularity": 42.9968,
+      "first_air_date": "2023-05-18",
+      "vote_average": 8.09,
+      "vote_count": 525,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jnzoh5qoxRLFRIQAxnl6D3RStPC.jpg",
+      "id": 91363,
+      "name": "What If...?",
+      "original_name": "What If...?",
+      "overview": "Taking inspiration from the comic books of the same name, each episode of this animated anthology series questions, revisits and twists classic Marvel Cinematic moments.",
+      "poster_path": "/lztz5XBMG1x6Y5ubz7CxfPFsAcW.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        16,
+        10759,
+        10765
+      ],
+      "popularity": 65.259,
+      "first_air_date": "2021-08-11",
+      "vote_average": 8.095,
+      "vote_count": 4397,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ytQrbnfvblnbNRGoHAKsSrAo3B0.jpg",
+      "id": 60574,
+      "name": "Peaky Blinders",
+      "original_name": "Peaky Blinders",
+      "overview": "A gangster family epic set in 1919 Birmingham, England and centered on a gang who sew razor blades in the peaks of their caps, and their fierce boss Tommy Shelby, who means to move up in the world.",
+      "poster_path": "/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        18,
+        80
+      ],
+      "popularity": 117.245,
+      "first_air_date": "2013-09-12",
+      "vote_average": 8.531,
+      "vote_count": 10445,
+      "origin_country": [
+        "GB"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4XbQb5YoWK9oMrlQdKwtZ1ccpC8.jpg",
+      "id": 97400,
+      "name": "Midnight Mass",
+      "original_name": "Midnight Mass",
+      "overview": "A young man returns to his isolated hometown on Crockett Island, hoping to rebuild his life after serving four years in prison for killing someone in a drunk-driving incident. He arrives at the same time as a mysterious, charismatic young priest who begins to revitalise the town's flagging faith. However, the community's divisions are soon exacerbated by the priest's deeds while mysterious events befall the small town.",
+      "poster_path": "/iYoMZYVD775MtBYJfv6OGY1FsnL.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        9648,
+        18
+      ],
+      "popularity": 21.3299,
+      "first_air_date": "2021-09-24",
+      "vote_average": 7.6,
+      "vote_count": 1030,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/e6v08948EZVvLrx0sWpmglguY9e.jpg",
+      "id": 131927,
+      "name": "Dexter: New Blood",
+      "original_name": "Dexter: New Blood",
+      "overview": "10 years after Dexter went missing in the eye of Hurricane Laura, we find him living under an assumed name in the small town of Iron Lake, New York.  Dexter may be embracing his new life, but in the wake of unexpected events in this close-knit community, his Dark Passenger beckons.",
+      "poster_path": "/9EBKgrFIsCFSV1RZKWhYUdbtGiv.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        18,
+        80
+      ],
+      "popularity": 41.8328,
+      "first_air_date": "2021-11-07",
+      "vote_average": 7.971,
+      "vote_count": 1311,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
+      "id": 66732,
+      "name": "Stranger Things",
+      "original_name": "Stranger Things",
+      "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
+      "poster_path": "/uOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        18,
+        10765,
+        9648
+      ],
+      "popularity": 124.5615,
+      "first_air_date": "2016-07-15",
+      "vote_average": 8.596,
+      "vote_count": 18474,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ikN8ABD9pXHuW4JFqTEHr3ae8rd.jpg",
+      "id": 106651,
+      "name": "Hellbound",
+      "original_name": "지옥",
+      "overview": "Unearthly beings deliver bloody condemnations, sending individuals to hell and giving rise to a religious group founded on the idea of divine justice.",
+      "poster_path": "/5NYdSAnDVIXePrSG2dznHdiibMk.jpg",
+      "media_type": "tv",
+      "original_language": "ko",
+      "genre_ids": [
+        18,
+        9648,
+        10765
+      ],
+      "popularity": 30.7906,
+      "first_air_date": "2021-11-19",
+      "vote_average": 7.347,
+      "vote_count": 937,
+      "origin_country": [
+        "KR"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ormMH10vPB9gxAvYwhP93uqfeuX.jpg",
+      "id": 125988,
+      "name": "Silo",
+      "original_name": "Silo",
+      "overview": "In a ruined and toxic future, thousands live in a giant silo deep underground. After its sheriff breaks a cardinal rule and residents die mysteriously, engineer Juliette starts to uncover shocking secrets and the truth about the silo.",
+      "poster_path": "/c2OijvbFEXBW1onbzuvENr4CGQB.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        10765,
+        18
+      ],
+      "popularity": 74.1247,
+      "first_air_date": "2023-05-04",
+      "vote_average": 8.157,
+      "vote_count": 1619,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/34OGjFEbHj0E3lE2w0iTUVq0CBz.jpg",
+      "id": 87739,
+      "name": "The Queen's Gambit",
+      "original_name": "The Queen's Gambit",
+      "overview": "In a 1950s orphanage, a young girl reveals an astonishing talent for chess and begins an unlikely journey to stardom while grappling with addiction.",
+      "poster_path": "/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 30.6956,
+      "first_air_date": "2020-10-23",
+      "vote_average": 8.463,
+      "vote_count": 4965,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/i65eDmzPilc9FSVboIKdSSZ8Q0E.jpg",
+      "id": 111141,
+      "name": "Maid",
+      "original_name": "Maid",
+      "overview": "After fleeing an abusive relationship, a young mother finds a job cleaning houses as she fights to provide for her child and build them a better future.",
+      "poster_path": "/4brWcSXdH31BZUTtRTHj2BYFe6M.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        18
+      ],
+      "popularity": 38.3886,
+      "first_air_date": "2021-09-30",
+      "vote_average": 7.971,
+      "vote_count": 781,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gzOIymABxmetAECXtazEYCpMmfb.jpg",
+      "id": 78191,
+      "name": "You",
+      "original_name": "You",
+      "overview": "A dangerously charming, intensely obsessive young man goes to extreme measures to insert himself into the lives of those he is transfixed by.",
+      "poster_path": "/oANi0vEE92nuijiZQgPZ88FSxqQ.jpg",
+      "media_type": "tv",
+      "original_language": "en",
+      "genre_ids": [
+        80
+      ],
+      "popularity": 89.6665,
+      "first_air_date": "2018-09-09",
+      "vote_average": 8.04,
+      "vote_count": 3566,
+      "origin_country": [
+        "US"
+      ]
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4LZuFMhLivOSO7zuWAQ3RffMnnr.jpg",
+      "id": 110356,
+      "name": "My Name",
+      "original_name": "마이 네임",
+      "overview": "Following her father's murder, a revenge-driven woman puts her trust in a powerful crime boss — and enters the police force under his direction.",
+      "poster_path": "/l3Bn2jgYndSFvcPpddqMxQXiiCe.jpg",
+      "media_type": "tv",
+      "original_language": "ko",
+      "genre_ids": [
+        80,
+        18,
+        9648
+      ],
+      "popularity": 27.531,
+      "first_air_date": "2021-10-15",
+      "vote_average": 8.236,
+      "vote_count": 949,
+      "origin_country": [
+        "KR"
+      ]
+    }
+  ],
+  "total_pages": 2,
+  "total_results": 40
+}
