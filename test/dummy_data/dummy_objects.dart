@@ -2,6 +2,7 @@ import 'package:ditonton/data/models/movie_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/tv_show/domain/entities/tv_show.dart';
 import 'package:ditonton/tv_show/domain/entities/tv_show_detail.dart';
 
 final testMovie = Movie(
@@ -23,6 +24,17 @@ final testMovie = Movie(
 );
 
 final testMovieList = [testMovie];
+
+final testTvShow = TvShow(
+  id: 1,
+  name: 'name',
+  overview: 'overview',
+  posterPath: 'posterPath',
+  runtime: 120,
+  voteAverage: 1,
+  voteCount: 2,
+);
+final testTvShowList = [testTvShow];
 
 final testMovieDetail = MovieDetail(
   adult: false,

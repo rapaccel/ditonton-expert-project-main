@@ -3,12 +3,15 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/presentation/bloc/detail_movies/detail_movies_bloc.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/tv_show/domain/entities/tv_show.dart';
 import 'package:ditonton/tv_show/domain/entities/tv_show_detail.dart';
+import 'package:ditonton/tv_show/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:ditonton/tv_show/presentation/provider/tv_detail_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -28,18 +31,26 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   void initState() {
     super.initState();
     if (widget.isTvShow) {
+      // Future.microtask(() {
+      //   Provider.of<TvDetailNotifier>(context, listen: false)
+      //       .fetchTvShowDetail(widget.id);
+      //   Provider.of<TvDetailNotifier>(context, listen: false)
+      //       .loadWatchlistStatus(widget.id);
+      // });
       Future.microtask(() {
-        Provider.of<TvDetailNotifier>(context, listen: false)
-            .fetchTvShowDetail(widget.id);
-        Provider.of<TvDetailNotifier>(context, listen: false)
-            .loadWatchlistStatus(widget.id);
+        Provider.of<TvDetailBloc>(context, listen: false)
+            .add(TvDetailEvent.fetch(widget.id));
       });
     } else {
+      // Future.microtask(() {
+      //   Provider.of<MovieDetailNotifier>(context, listen: false)
+      //       .fetchMovieDetail(widget.id);
+      //   Provider.of<MovieDetailNotifier>(context, listen: false)
+      //       .loadWatchlistStatus(widget.id);
+      // });
       Future.microtask(() {
-        Provider.of<MovieDetailNotifier>(context, listen: false)
-            .fetchMovieDetail(widget.id);
-        Provider.of<MovieDetailNotifier>(context, listen: false)
-            .loadWatchlistStatus(widget.id);
+        Provider.of<DetailMoviesBloc>(context, listen: false)
+            .add(DetailMoviesEvent.fetch(widget.id));
       });
     }
   }
@@ -48,49 +59,92 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget build(BuildContext context) {
     if (!widget.isTvShow) {
       return Scaffold(
-        body: Consumer<MovieDetailNotifier>(
-          builder: (context, provider, child) {
-            if (provider.movieState == RequestState.Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (provider.movieState == RequestState.Loaded) {
-              final movie = provider.movie;
-              return SafeArea(
-                child: DetailContent(
-                  isTvShow: widget.isTvShow,
-                  movie: movie,
-                  movieRecommendations: provider.movieRecommendations,
-                  isAddedWatchlist: provider.isAddedToWatchlist,
-                ),
-              );
-            } else {
-              return Text(provider.message);
-            }
+        // body: Consumer<MovieDetailNotifier>(
+        //   builder: (context, provider, child) {
+        //     if (provider.movieState == RequestState.Loading) {
+        //       return Center(
+        //         child: CircularProgressIndicator(),
+        //       );
+        //     } else if (provider.movieState == RequestState.Loaded) {
+        //       final movie = provider.movie;
+        //       return SafeArea(
+        //         child: DetailContent(
+        //           isTvShow: widget.isTvShow,
+        //           movie: movie,
+        //           movieRecommendations: provider.movieRecommendations,
+        //           isAddedWatchlist: provider.isAddedToWatchlist,
+        //         ),
+        //       );
+        //     } else {
+        //       return Text(provider.message);
+        //     }
+        //   },
+        // ),
+        body: BlocBuilder<DetailMoviesBloc, DetailMoviesState>(
+          builder: (context, state) {
+            return state.when(
+              initial: () => Center(child: Text('Initial State')),
+              loading: () => Center(child: CircularProgressIndicator()),
+              loaded: (movies, recommendations, isAddedToWatchlist) {
+                final movie = movies;
+                return SafeArea(
+                  child: DetailContent(
+                    isTvShow: widget.isTvShow,
+                    movie: movie,
+                    movieRecommendations: recommendations,
+                    isAddedWatchlist: isAddedToWatchlist,
+                  ),
+                );
+              },
+              error: (message) => Center(child: Text(message)),
+              empty: () => Center(child: Text('No Data')),
+            );
           },
         ),
       );
     } else {
       return Scaffold(
-        body: Consumer<TvDetailNotifier>(
-          builder: (context, provider, child) {
-            if (provider.tvShowState == RequestState.Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (provider.tvShowState == RequestState.Loaded) {
-              final movie = provider.tvShow;
-              return SafeArea(
-                child: DetailContent(
-                  isTvShow: widget.isTvShow,
-                  tvShow: movie,
-                  tvShowRecommendations: provider.tvShowRecommendations,
-                  isAddedWatchlist: provider.isAddedToWatchlist,
-                ),
-              );
-            } else {
-              return Text(provider.message);
-            }
+        //   body: Consumer<TvDetailNotifier>(
+        //     builder: (context, provider, child) {
+        //       if (provider.tvShowState == RequestState.Loading) {
+        //         return Center(
+        //           child: CircularProgressIndicator(),
+        //         );
+        //       } else if (provider.tvShowState == RequestState.Loaded) {
+        //         final movie = provider.tvShow;
+        //         return SafeArea(
+        //           child: DetailContent(
+        //             isTvShow: widget.isTvShow,
+        //             tvShow: movie,
+        //             tvShowRecommendations: provider.tvShowRecommendations,
+        //             isAddedWatchlist: provider.isAddedToWatchlist,
+        //           ),
+        //         );
+        //       } else {
+        //         return Text(provider.message);
+        //       }
+        //     },
+        //   ),
+        // );
+        body: BlocBuilder<TvDetailBloc, TvDetailState>(
+          builder: (context, state) {
+            return state.when(
+              initial: () => Center(child: Text('Initial State')),
+              loading: () => Center(child: CircularProgressIndicator()),
+              loaded: (tvDetail, recommendations, isAddedToWatchlist) {
+                final tvShow = tvDetail;
+                return SafeArea(
+                  child: DetailContent(
+                    isTvShow: widget.isTvShow,
+                    tvShow: tvShow,
+                    tvShowRecommendations: recommendations,
+                    isAddedWatchlist: isAddedToWatchlist,
+                  ),
+                );
+              },
+              error: (message) => Center(child: Text(message)),
+              empty: () => Center(child: Text('No Data')),
+            );
           },
         ),
       );
@@ -163,70 +217,138 @@ class DetailContent extends StatelessWidget {
                               title,
                               style: kHeading5,
                             ),
-                            FilledButton(
-                              onPressed: () async {
-                                if (!isAddedWatchlist) {
-                                  if (isTvShow) {
-                                    await Provider.of<TvDetailNotifier>(context,
-                                            listen: false)
-                                        .addWatchlist(tvShow!);
+                            MultiBlocListener(
+                              listeners: [
+                                BlocListener<DetailMoviesBloc,
+                                    DetailMoviesState>(
+                                  listenWhen: (previous, current) {
+                                    final prevIsAdded = previous.maybeWhen(
+                                      loaded: (_, __, isAdded) => isAdded,
+                                      orElse: () => null,
+                                    );
+                                    final currIsAdded = current.maybeWhen(
+                                      loaded: (_, __, isAdded) => isAdded,
+                                      orElse: () => null,
+                                    );
+                                    return prevIsAdded != null &&
+                                        currIsAdded != null &&
+                                        prevIsAdded != currIsAdded;
+                                  },
+                                  listener: (context, state) {
+                                    final message = state.maybeWhen(
+                                      orElse: () => '',
+                                      error: (msg) => msg,
+                                      loaded: (movies, recommendations,
+                                              isAdded) =>
+                                          isAdded
+                                              ? MovieDetailNotifier
+                                                  .watchlistAddSuccessMessage
+                                              : MovieDetailNotifier
+                                                  .watchlistRemoveSuccessMessage,
+                                    );
+                                    if (message.isNotEmpty) {
+                                      WidgetsBinding.instance
+                                          .addPostFrameCallback((_) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(content: Text(message)),
+                                        );
+                                      });
+                                    }
+                                  },
+                                ),
+                                BlocListener<TvDetailBloc, TvDetailState>(
+                                  listenWhen: (previous, current) {
+                                    final prevIsAdded = previous.maybeWhen(
+                                      loaded: (_, __, isAdded) => isAdded,
+                                      orElse: () => null,
+                                    );
+                                    final currIsAdded = current.maybeWhen(
+                                      loaded: (_, __, isAdded) => isAdded,
+                                      orElse: () => null,
+                                    );
+                                    return prevIsAdded != null &&
+                                        currIsAdded != null &&
+                                        prevIsAdded != currIsAdded;
+                                  },
+                                  listener: (context, state) {
+                                    final message = state.maybeWhen(
+                                      orElse: () => '',
+                                      error: (msg) => msg,
+                                      loaded: (tvDetail, recommendations,
+                                              isAdded) =>
+                                          isAdded
+                                              ? TvDetailNotifier
+                                                  .watchlistAddSuccessMessage
+                                              : TvDetailNotifier
+                                                  .watchlistRemoveSuccessMessage,
+                                    );
+                                    if (message.isNotEmpty) {
+                                      WidgetsBinding.instance
+                                          .addPostFrameCallback((_) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(content: Text(message)),
+                                        );
+                                      });
+                                    }
+                                  },
+                                ),
+                              ],
+                              child: FilledButton(
+                                onPressed: () async {
+                                  if (!isAddedWatchlist) {
+                                    if (isTvShow) {
+                                      // await Provider.of<TvDetailNotifier>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .addWatchlist(tvShow!);
+                                      Provider.of<TvDetailBloc>(context,
+                                              listen: false)
+                                          .add(TvDetailEvent.addToWatchlist(
+                                              tvShow!));
+                                    } else {
+                                      // await Provider.of<MovieDetailNotifier>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .addWatchlist(movie!);
+                                      Provider.of<DetailMoviesBloc>(context,
+                                              listen: false)
+                                          .add(DetailMoviesEvent.addToWatchlist(
+                                              movie!));
+                                    }
                                   } else {
-                                    await Provider.of<MovieDetailNotifier>(
-                                            context,
-                                            listen: false)
-                                        .addWatchlist(movie!);
+                                    if (isTvShow) {
+                                      // await Provider.of<TvDetailNotifier>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .removeFromWatchlist(tvShow!);
+                                      Provider.of<TvDetailBloc>(context,
+                                              listen: false)
+                                          .add(
+                                              TvDetailEvent.removeFromWatchlist(
+                                                  tvShow!));
+                                    } else {
+                                      // await Provider.of<MovieDetailNotifier>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .removeFromWatchlist(movie!);
+                                      Provider.of<DetailMoviesBloc>(context,
+                                              listen: false)
+                                          .add(DetailMoviesEvent
+                                              .removeFromWatchlist(movie!));
+                                    }
                                   }
-                                } else {
-                                  if (isTvShow) {
-                                    await Provider.of<TvDetailNotifier>(context,
-                                            listen: false)
-                                        .removeFromWatchlist(tvShow!);
-                                  } else {
-                                    await Provider.of<MovieDetailNotifier>(
-                                            context,
-                                            listen: false)
-                                        .removeFromWatchlist(movie!);
-                                  }
-                                }
-
-                                final message = isTvShow
-                                    ? Provider.of<TvDetailNotifier>(context,
-                                            listen: false)
-                                        .watchlistMessage
-                                    : Provider.of<MovieDetailNotifier>(context,
-                                            listen: false)
-                                        .watchlistMessage;
-
-                                if (message ==
-                                        MovieDetailNotifier
-                                            .watchlistAddSuccessMessage ||
-                                    message ==
-                                        MovieDetailNotifier
-                                            .watchlistRemoveSuccessMessage ||
-                                    message ==
-                                        TvDetailNotifier
-                                            .watchlistAddSuccessMessage ||
-                                    message ==
-                                        TvDetailNotifier
-                                            .watchlistRemoveSuccessMessage) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text(message)));
-                                } else {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) =>
-                                        AlertDialog(content: Text(message)),
-                                  );
-                                }
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  isAddedWatchlist
-                                      ? Icon(Icons.check)
-                                      : Icon(Icons.add),
-                                  Text('Watchlist'),
-                                ],
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    isAddedWatchlist
+                                        ? Icon(Icons.check)
+                                        : Icon(Icons.add),
+                                    Text('Watchlist'),
+                                  ],
+                                ),
                               ),
                             ),
                             Text(

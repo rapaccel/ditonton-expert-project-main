@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 
-import '../../../helpers/test_helper.mocks.dart';
+import '../../../data/datasources/movie_remote_data_source_test.mocks.dart';
 import '../../../json_reader.dart';
 
 void main() {
@@ -16,11 +16,11 @@ void main() {
   const BASE_URL = 'https://api.themoviedb.org/3';
 
   late TvRemoteDataSourceImpl dataSource;
-  late MockHttpClient mockHttpClient;
+  late MockIOClient mockHttpClient;
 
   setUp(() {
-    mockHttpClient = MockHttpClient();
-    dataSource = TvRemoteDataSourceImpl(client: mockHttpClient);
+    mockHttpClient = MockIOClient();
+    dataSource = TvRemoteDataSourceImpl(ioClient: mockHttpClient);
   });
 
   group('get On Air Tv Show', () {

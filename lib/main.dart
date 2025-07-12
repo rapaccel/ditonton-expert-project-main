@@ -1,6 +1,13 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
+import 'package:ditonton/firebase_options.dart';
+import 'package:ditonton/presentation/bloc/detail_movies/detail_movies_bloc.dart';
+import 'package:ditonton/presentation/bloc/now_playing/now_playing_movies_bloc.dart';
+import 'package:ditonton/presentation/bloc/list_movies/list_movies_bloc.dart';
+import 'package:ditonton/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:ditonton/presentation/bloc/search_bloc.dart';
+import 'package:ditonton/presentation/bloc/top_rated/top_rated_bloc.dart';
+import 'package:ditonton/presentation/bloc/watch_list/watch_list_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/home_movie_page.dart';
@@ -16,20 +23,35 @@ import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:ditonton/tv_show/presentation/bloc/on_air_tv/on_air_tv_bloc.dart';
+import 'package:ditonton/tv_show/presentation/bloc/popular_tv/popular_tv_bloc.dart';
+import 'package:ditonton/tv_show/presentation/bloc/search_tv/search_tv_bloc.dart';
+import 'package:ditonton/tv_show/presentation/bloc/top_rated/top_rated_tv_bloc.dart';
+import 'package:ditonton/tv_show/presentation/bloc/tv_detail/tv_detail_bloc.dart';
+import 'package:ditonton/tv_show/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:ditonton/tv_show/presentation/provider/on_air_tv_notifier.dart';
 import 'package:ditonton/tv_show/presentation/provider/popular_tv_notifier.dart';
 import 'package:ditonton/tv_show/presentation/provider/search_tv_notifier.dart';
 import 'package:ditonton/tv_show/presentation/provider/top_rated_tv_notifier.dart';
 import 'package:ditonton/tv_show/presentation/provider/tv_detail_notifier.dart';
 import 'package:ditonton/tv_show/presentation/provider/tv_list_notifier.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
-void main() {
+void main() async {
   di.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Setup Crashlytics
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   runApp(MyApp());
 }
 
@@ -73,6 +95,38 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<SearchBloc>(),
         ),
+        BlocProvider(create: (_) => di.locator<ListMoviesBloc>()),
+        BlocProvider(
+          create: (_) => di.locator<NowPlayingMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<PopularMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<WatchListBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<DetailMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvListBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedTvBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<OnAirTvBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<PopularTvBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SearchTvBloc>(),
+        ),
+        BlocProvider(create: (_) => di.locator<TvDetailBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
