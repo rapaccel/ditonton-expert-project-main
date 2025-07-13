@@ -40,6 +40,19 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     }
   }
 
+  late ScaffoldMessengerState _scaffoldMessenger;
+  @override
+  void dispose() {
+    _scaffoldMessenger.clearSnackBars();
+    super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _scaffoldMessenger = ScaffoldMessenger.of(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!widget.isTvShow) {
@@ -164,19 +177,6 @@ class DetailContent extends StatelessWidget {
                               listeners: [
                                 BlocListener<DetailMoviesBloc,
                                     DetailMoviesState>(
-                                  listenWhen: (previous, current) {
-                                    final prevIsAdded = previous.maybeWhen(
-                                      loaded: (_, __, isAdded) => isAdded,
-                                      orElse: () => null,
-                                    );
-                                    final currIsAdded = current.maybeWhen(
-                                      loaded: (_, __, isAdded) => isAdded,
-                                      orElse: () => null,
-                                    );
-                                    return prevIsAdded != null &&
-                                        currIsAdded != null &&
-                                        prevIsAdded != currIsAdded;
-                                  },
                                   listener: (context, state) {
                                     final message = state.maybeWhen(
                                       orElse: () => '',
@@ -188,30 +188,20 @@ class DetailContent extends StatelessWidget {
                                               : "Bookmark removed from watchlist",
                                     );
                                     if (message.isNotEmpty) {
-                                      WidgetsBinding.instance
-                                          .addPostFrameCallback((_) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(content: Text(message)),
-                                        );
+                                      Future.delayed(
+                                          const Duration(milliseconds: 400),
+                                          () {
+                                        if (context.mounted) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(content: Text(message)),
+                                          );
+                                        }
                                       });
                                     }
                                   },
                                 ),
                                 BlocListener<TvDetailBloc, TvDetailState>(
-                                  listenWhen: (previous, current) {
-                                    final prevIsAdded = previous.maybeWhen(
-                                      loaded: (_, __, isAdded) => isAdded,
-                                      orElse: () => null,
-                                    );
-                                    final currIsAdded = current.maybeWhen(
-                                      loaded: (_, __, isAdded) => isAdded,
-                                      orElse: () => null,
-                                    );
-                                    return prevIsAdded != null &&
-                                        currIsAdded != null &&
-                                        prevIsAdded != currIsAdded;
-                                  },
                                   listener: (context, state) {
                                     final message = state.maybeWhen(
                                       orElse: () => '',
