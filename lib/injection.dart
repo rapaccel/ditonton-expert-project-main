@@ -23,13 +23,6 @@ import 'package:ditonton/presentation/bloc/popular_movies/popular_movies_bloc.da
 import 'package:ditonton/presentation/bloc/search_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated/top_rated_bloc.dart';
 import 'package:ditonton/presentation/bloc/watch_list/watch_list_bloc.dart';
-import 'package:ditonton/presentation/provider/get_now_playing_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/tv_show/data/dataSources/tv_remote_data_source.dart';
 import 'package:ditonton/tv_show/data/repositories/tv_repositories_impl.dart';
 import 'package:ditonton/tv_show/domain/repositories/tv_repositories.dart';
@@ -48,81 +41,15 @@ import 'package:ditonton/tv_show/presentation/bloc/search_tv/search_tv_bloc.dart
 import 'package:ditonton/tv_show/presentation/bloc/top_rated/top_rated_tv_bloc.dart';
 import 'package:ditonton/tv_show/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:ditonton/tv_show/presentation/bloc/tv_list/tv_list_bloc.dart';
-import 'package:ditonton/tv_show/presentation/provider/on_air_tv_notifier.dart';
-import 'package:ditonton/tv_show/presentation/provider/popular_tv_notifier.dart';
 import 'package:ditonton/tv_show/presentation/provider/save_watch_list.dart';
-import 'package:ditonton/tv_show/presentation/provider/search_tv_notifier.dart';
-import 'package:ditonton/tv_show/presentation/provider/top_rated_tv_notifier.dart';
-import 'package:ditonton/tv_show/presentation/provider/tv_detail_notifier.dart';
-import 'package:ditonton/tv_show/presentation/provider/tv_list_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:http/io_client.dart';
 
 final locator = GetIt.instance;
 
-void init() async {
-  // provider
-  locator.registerFactory(
-    () => MovieListNotifier(
-      getNowPlayingMovies: locator(),
-      getPopularMovies: locator(),
-      getTopRatedMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieDetailNotifier(
-      getMovieDetail: locator(),
-      getMovieRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => PopularMoviesNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedMoviesNotifier(
-      getTopRatedMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => WatchlistMovieNotifier(
-      getWatchlistMovies: locator(),
-    ),
-  );
-  locator.registerFactory(() => TvListNotifier(
-      getNowAiringTv: locator(),
-      getPopularTv: locator(),
-      getTopRatedTv: locator()));
-  locator.registerFactory(
-    () => PopularTvNotifier(
-      getPopularTv: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedTvNotifier(
-      getTopRatedTv: locator(),
-    ),
-  );
-  locator.registerFactory(() => TvDetailNotifier(
-      getTvShowDetail: locator(),
-      getTvShowRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator()));
-  locator.registerFactory(
-      () => GetNowPlayingMoviesNotifier(getNowPlayingMovies: locator()));
-  locator.registerFactory(() => OnAirTvNotifier(getOnAirTv: locator()));
-  locator.registerFactory(() => SearchTvNotifier(searchTvShow: locator()));
+void init() {
+  // bloc
   locator.registerFactory(() => SearchBloc(locator()));
   locator
       .registerFactory(() => ListMoviesBloc(locator(), locator(), locator()));
@@ -203,13 +130,14 @@ void init() async {
   // external
   locator.registerLazySingleton(() => http.Client());
   locator.registerLazySingleton(() => DataConnectionChecker());
-  locator.registerLazySingleton(
-    () => IOClient(),
-  );
   // netwok info
   locator.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(locator()),
   );
+}
+
+Future<void> setupLocator() async {
   final ioClient = await createSecureIOClient();
+
   locator.registerLazySingleton<IOClient>(() => ioClient);
 }

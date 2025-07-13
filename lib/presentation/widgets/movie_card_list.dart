@@ -64,6 +64,7 @@ class MovieCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 child: CachedNetworkImage(
+                  key: ValueKey('movie_card_$id'),
                   imageUrl: '$BASE_IMAGE_URL${posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(

@@ -4,12 +4,9 @@ import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
 import 'package:ditonton/presentation/bloc/detail_movies/detail_movies_bloc.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/tv_show/domain/entities/tv_show.dart';
 import 'package:ditonton/tv_show/domain/entities/tv_show_detail.dart';
 import 'package:ditonton/tv_show/presentation/bloc/tv_detail/tv_detail_bloc.dart';
-import 'package:ditonton/tv_show/presentation/provider/tv_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -31,23 +28,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   void initState() {
     super.initState();
     if (widget.isTvShow) {
-      // Future.microtask(() {
-      //   Provider.of<TvDetailNotifier>(context, listen: false)
-      //       .fetchTvShowDetail(widget.id);
-      //   Provider.of<TvDetailNotifier>(context, listen: false)
-      //       .loadWatchlistStatus(widget.id);
-      // });
       Future.microtask(() {
         Provider.of<TvDetailBloc>(context, listen: false)
             .add(TvDetailEvent.fetch(widget.id));
       });
     } else {
-      // Future.microtask(() {
-      //   Provider.of<MovieDetailNotifier>(context, listen: false)
-      //       .fetchMovieDetail(widget.id);
-      //   Provider.of<MovieDetailNotifier>(context, listen: false)
-      //       .loadWatchlistStatus(widget.id);
-      // });
       Future.microtask(() {
         Provider.of<DetailMoviesBloc>(context, listen: false)
             .add(DetailMoviesEvent.fetch(widget.id));
@@ -59,27 +44,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget build(BuildContext context) {
     if (!widget.isTvShow) {
       return Scaffold(
-        // body: Consumer<MovieDetailNotifier>(
-        //   builder: (context, provider, child) {
-        //     if (provider.movieState == RequestState.Loading) {
-        //       return Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     } else if (provider.movieState == RequestState.Loaded) {
-        //       final movie = provider.movie;
-        //       return SafeArea(
-        //         child: DetailContent(
-        //           isTvShow: widget.isTvShow,
-        //           movie: movie,
-        //           movieRecommendations: provider.movieRecommendations,
-        //           isAddedWatchlist: provider.isAddedToWatchlist,
-        //         ),
-        //       );
-        //     } else {
-        //       return Text(provider.message);
-        //     }
-        //   },
-        // ),
         body: BlocBuilder<DetailMoviesBloc, DetailMoviesState>(
           builder: (context, state) {
             return state.when(
@@ -104,28 +68,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       );
     } else {
       return Scaffold(
-        //   body: Consumer<TvDetailNotifier>(
-        //     builder: (context, provider, child) {
-        //       if (provider.tvShowState == RequestState.Loading) {
-        //         return Center(
-        //           child: CircularProgressIndicator(),
-        //         );
-        //       } else if (provider.tvShowState == RequestState.Loaded) {
-        //         final movie = provider.tvShow;
-        //         return SafeArea(
-        //           child: DetailContent(
-        //             isTvShow: widget.isTvShow,
-        //             tvShow: movie,
-        //             tvShowRecommendations: provider.tvShowRecommendations,
-        //             isAddedWatchlist: provider.isAddedToWatchlist,
-        //           ),
-        //         );
-        //       } else {
-        //         return Text(provider.message);
-        //       }
-        //     },
-        //   ),
-        // );
         body: BlocBuilder<TvDetailBloc, TvDetailState>(
           builder: (context, state) {
             return state.when(
@@ -183,6 +125,7 @@ class DetailContent extends StatelessWidget {
     return Stack(
       children: [
         CachedNetworkImage(
+          key: ValueKey('poster_$posterPath'),
           imageUrl: 'https://image.tmdb.org/t/p/w500${posterPath}',
           width: screenWidth,
           placeholder: (context, url) => Center(
@@ -241,10 +184,8 @@ class DetailContent extends StatelessWidget {
                                       loaded: (movies, recommendations,
                                               isAdded) =>
                                           isAdded
-                                              ? MovieDetailNotifier
-                                                  .watchlistAddSuccessMessage
-                                              : MovieDetailNotifier
-                                                  .watchlistRemoveSuccessMessage,
+                                              ? "Bookmark added to watchlist"
+                                              : "Bookmark removed from watchlist",
                                     );
                                     if (message.isNotEmpty) {
                                       WidgetsBinding.instance
@@ -278,10 +219,8 @@ class DetailContent extends StatelessWidget {
                                       loaded: (tvDetail, recommendations,
                                               isAdded) =>
                                           isAdded
-                                              ? TvDetailNotifier
-                                                  .watchlistAddSuccessMessage
-                                              : TvDetailNotifier
-                                                  .watchlistRemoveSuccessMessage,
+                                              ? "Bookmark added to watchlist"
+                                              : "Bookmark removed from watchlist",
                                     );
                                     if (message.isNotEmpty) {
                                       WidgetsBinding.instance
@@ -296,22 +235,15 @@ class DetailContent extends StatelessWidget {
                                 ),
                               ],
                               child: FilledButton(
+                                key: Key('watchlist_button'),
                                 onPressed: () async {
                                   if (!isAddedWatchlist) {
                                     if (isTvShow) {
-                                      // await Provider.of<TvDetailNotifier>(
-                                      //         context,
-                                      //         listen: false)
-                                      //     .addWatchlist(tvShow!);
                                       Provider.of<TvDetailBloc>(context,
                                               listen: false)
                                           .add(TvDetailEvent.addToWatchlist(
                                               tvShow!));
                                     } else {
-                                      // await Provider.of<MovieDetailNotifier>(
-                                      //         context,
-                                      //         listen: false)
-                                      //     .addWatchlist(movie!);
                                       Provider.of<DetailMoviesBloc>(context,
                                               listen: false)
                                           .add(DetailMoviesEvent.addToWatchlist(
@@ -319,20 +251,12 @@ class DetailContent extends StatelessWidget {
                                     }
                                   } else {
                                     if (isTvShow) {
-                                      // await Provider.of<TvDetailNotifier>(
-                                      //         context,
-                                      //         listen: false)
-                                      //     .removeFromWatchlist(tvShow!);
                                       Provider.of<TvDetailBloc>(context,
                                               listen: false)
                                           .add(
                                               TvDetailEvent.removeFromWatchlist(
                                                   tvShow!));
                                     } else {
-                                      // await Provider.of<MovieDetailNotifier>(
-                                      //         context,
-                                      //         listen: false)
-                                      //     .removeFromWatchlist(movie!);
                                       Provider.of<DetailMoviesBloc>(context,
                                               listen: false)
                                           .add(DetailMoviesEvent
@@ -428,6 +352,8 @@ class DetailContent extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                             child: CachedNetworkImage(
+                                              key: ValueKey(
+                                                  'recommendation_$id'),
                                               imageUrl:
                                                   'https://image.tmdb.org/t/p/w500$poster',
                                               placeholder: (context, url) => Center(
